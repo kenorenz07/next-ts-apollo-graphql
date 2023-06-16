@@ -1,0 +1,32 @@
+type User {
+    id: ID!
+    first_name: String!
+    last_name: String!
+    avatar: String
+    email: String!
+    google_id: String
+    reputation: Int!
+    slug: String!
+    about_me: String
+    created_at: String!
+    updated_at: String
+    question_count: Int
+    answer_count: Int
+    top_questions: [Question]
+    top_answers: [Answer]
+    role: Role! @belongsTo
+    watchedTags: [Tag!]! @belongsToMany
+    questions: [Question!]! @hasMany
+    answers: [Answer!]! @hasMany
+    comments: [Comment!]! @hasMany
+    bookmarks: [Bookmark!]! @hasMany
+    notifications: [UserNotification!]! @hasMany
+    teams: [Member!]! @hasMany
+    is_following: Boolean
+    follower_count: Int!
+    following_count: Int!
+    bookmarked_questions: [Bookmark!]!
+    bookmarked_answers: [Bookmark!]!
+    following: [UserRelation] @hasMany
+    followers: [UserRelation] @hasMany
+}

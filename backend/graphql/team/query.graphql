@@ -1,0 +1,19 @@
+extend type Query {
+    teams(name: String! = "%%" @where(operator: "like")): [Team]
+        @guard(with: ["api"])
+        @paginate
+
+    getUserTeams(
+        name: String! = "%%" @where(operator: "like")
+        isAdmin: Boolean = false
+        user_slug: String
+    ): [Team!]!
+        @guard(with: ["api"])
+        @paginate(builder: "App\\GraphQL\\Queries\\Teams")
+
+    team(slug: String! @eq): Team @guard(with: ["api"]) @find
+    teamMembers(team_slug: String!): [Member!]
+        @guard(with: ["api"])
+        @paginate(builder: "App\\GraphQL\\Queries\\TeamMembers")
+    teamRoles: [TeamRole!]! @guard(with: ["api"]) @all
+}

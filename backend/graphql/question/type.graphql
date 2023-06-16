@@ -1,0 +1,26 @@
+type Question {
+    id: ID!
+    title: String!
+    content: String!
+    slug: String!
+    status: Int
+    is_public: Boolean
+    created_at: String!
+    humanized_created_at: String
+    updated_at: String
+    deleted_at: String
+    vote_count: Int
+    upvote_percentage: Float
+    views_count: Int
+    user_vote: Int
+    is_bookmarked: Boolean
+    is_from_user: Boolean
+    upvote_percentage: Float
+    user: User! @belongsTo
+    answers: [Answer!]!
+    comments: [Comment]! @morphMany
+    votes: [Vote]! @morphMany
+    team: Team @belongsTo
+    tags: [Tag!]! @belongsToMany
+    is_answered: Boolean
+}

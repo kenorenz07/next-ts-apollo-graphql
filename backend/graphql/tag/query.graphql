@@ -1,0 +1,35 @@
+enum ORDER {
+    ASC
+    DESC
+}
+extend type Query {
+    allTags: [Tag!]! @guard(with: ["api"]) @all
+    tags(
+        name: String! = "%%" @where(operator: "like")
+        sort: [tagSort]
+    ): [Tag!]
+        @guard(with: ["api"])
+        @paginate(builder: "App\\GraphQL\\Queries\\Tags")
+    tag(slug: String! @eq): Tag @guard(with: ["api"]) @find
+    tagSuggest(name: String! = "%%" @where(operator: "like")): [Tag]
+        @guard(with: ["api"])
+        @all
+}
+
+input tagSort {
+    column: TAG_COLUMNS
+    order: ORDER = ASC
+}
+
+enum TAG_COLUMNS {
+    CREATED_AT @enum(value: "created_at")
+    UPDATED_AT @enum(value: "updated_at")
+    NAME @enum(value: "name")
+    POPULARITY @enum(value: "questions_count")
+    WATCH_COUNT @enum(value: "users_watching_count")
+}
+
+enum ORDER {
+    ASC
+    DESC
+}

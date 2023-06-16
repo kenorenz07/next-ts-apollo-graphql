@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      args:
+        user: backend
+        uid: 1000
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_DATABASE: sphsunoverflow
+      DB_USERNAME: root
+      DB_PASSWORD: password
+    container_name: backend-laravel
+    restart: unless-stopped
+    working_dir: /var/www/backend
+    volumes:
+      - ./backend:/var/www/backend
+    networks:
+      - sphsunoverflow
+    ports:
+      - 8000:8000
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - 3000:3000
+    container_name: frontend-next
+    networks:
+      - sphsunoverflow
+    depends_on:
+      - backend
+    restart: unless-stopped
+    volumes:
+      - ./frontend:/var/www/html/frontend
+      - /var/www/html/frontend/node_modules
+      - /var/www/html/frontend/.next
+  db:
+    image: mysql:8.0.31
+    environment:
+      MYSQL_DATABASE: 'sphsunoverflow'
+      MYSQL_ROOT_PASSWORD: 'password'
+    volumes:
+      - .dbdata:/var/lib/mysql/
+    networks:
+      - sphsunoverflow
+networks:
+  sphsunoverflow:
+    driver: bridge

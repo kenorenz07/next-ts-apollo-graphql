@@ -1,0 +1,33 @@
+.quill .ql-container.ql-snow {
+    background-color: white;
+    border-radius: 0 0 5px 5px;
+    border-color: #33333380;
+    border-width: 1px;
+}
+.quill .ql-container.ql-snow.ql-disabled {
+    border-radius: 5px 5px 5px 5px;
+}
+.quill .ql-toolbar.ql-snow {
+    background-color: white;
+    border-radius: 5px 5px 0 0;
+    border-color: #33333380;
+    border-width: 1px;
+    vertical-align: middle !important;
+    display: flex;
+}
+
+.ql-tooltip {
+    border-radius: 5px;
+    left: 40% !important;
+    top: 0 !important;
+}
+
+.quill.description > .ql-container.ql-snow > .ql-editor {
+    min-height: 7rem;
+    max-height: 18rem;
+}
+
+.quill.content > .ql-container.ql-snow > .ql-editor {
+    min-height: 7rem;
+    max-height: 18rem;
+}

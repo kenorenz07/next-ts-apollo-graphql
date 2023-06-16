@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .scrollbar::-webkit-scrollbar {
+        width: 30px;
+    }
+
+    .scrollbar::-webkit-scrollbar-track {
+        border-radius: 100vh;
+    }
+
+    .scrollbar::-webkit-scrollbar-thumb {
+        border: 10px solid transparent;
+        background: #d9d9d9;
+        background-clip: padding-box;
+        border-radius: 100vh;
+    }
+
+    .scrollbar::-webkit-scrollbar-thumb:hover {
+        background-color: #716666;
+    }
+}
+
+pre {
+    white-space: pre-wrap;
+}
+
+input::-ms-reveal,
+input::-ms-clear {
+    display: none;
+}
+
+.contentParse > p > img {
+    @apply w-full max-w-xs rounded-md;
+}
+
+.loading-screen {
+    height: 90vh;
+    @apply flex w-full items-center justify-center;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.error-form-element {
+    border: 1px solid #ff2200 !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #fff7f5 inset !important;
+}
+
+.line-clamp-1 img,
+.line-clamp-4 img {
+    display: none !important;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.Content > * > * {
+    display: flex;
+}
+
+/* FOR QUESTION LIST */
+@media (min-width: 1360px) {
+    .question-list-search-input {
+        @apply w-96;
+    }
+}
+
+@media (min-width: 1220px) {
+    .question-list-header {
+        @apply flex justify-between;
+    }
+}
+
+@media (min-width: 1290px) and (max-width: 1360px) {
+    .question-list-search-input {
+        @apply flex w-80;
+    }
+}
+
+@media (min-width: 1260px) and (max-width: 1290px) {
+    .question-list-search-input {
+        @apply w-72;
+    }
+}
+
+@media (min-width: 1220px) and (max-width: 1260px) {
+    .question-list-search-input {
+        @apply w-64;
+    }
+}
+
+@media (min-width: 800px) and (max-width: 1220px) {
+    .question-list-filters {
+        @apply mt-2 w-full;
+    }
+    .question-list-search-filters {
+        @apply mt-4;
+    }
+    .question-list-header {
+        @apply h-24;
+    }
+    .question-list {
+        @apply mt-2;
+    }
+}
+
+.remove-padding {
+    padding: 0px !important;
+}

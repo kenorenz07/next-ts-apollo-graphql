@@ -1,0 +1,24 @@
+extend type Mutation {
+    createTeam(
+        name: String! @rules(apply: ["required"])
+        description: String! @rules(apply: ["required"])
+        user_id: ID! @rules(apply: ["required", "integer"])
+    ): Team!
+        @guard(with: ["api"])
+        @hasPermissions(requiredPermission: "add-team")
+    updateTeam(
+        id: ID! @rules(apply: ["required", "integer"])
+        name: String!
+        description: String!
+        user_id: ID! @rules(apply: ["integer"])
+    ): Team!
+        @guard(with: ["api"])
+        @hasPermissions(requiredPermission: "edit-team")
+    updateTeamDashboard(
+        id: ID! @rules(apply: ["required", "integer"])
+        dashboard_content: String! @rules(apply: ["required"])
+    ): Team! @guard(with: ["api"])
+    deleteTeam(id: ID!): Team!
+        @guard(with: ["api"])
+        @hasPermissions(requiredPermission: "delete-team")
+}

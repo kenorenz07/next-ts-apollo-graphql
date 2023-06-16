@@ -1,0 +1,38 @@
+input filter {
+    answered: Boolean
+    keyword: String
+    tag: String
+    team: String
+    is_public: Boolean
+    user_id: ID
+    user_slug: String
+}
+
+enum ORDERBY {
+    ASC
+    DESC
+}
+
+enum COLUMNS {
+    UPDATED_AT @enum(value: "updated_at")
+    VOTES @enum(value: "votes_sum_value")
+}
+
+input answerSort {
+    column: COLUMNS
+    order: ORDERBY = ASC
+}
+
+extend type Query {
+    question(
+        slug: String! @eq
+        shouldAddViewCount: Boolean = true
+    ): Question @guard(with: ["api"])
+    questions(
+        orderBy: _ @orderBy(columns: ["created_at", "updated_at"])
+        isAdmin: Boolean = false
+        filter: filter @spread
+    ): [Question!]!
+        @guard(with: ["api"])
+        @paginate(builder: "App\\GraphQL\\Queries\\Questions")
+}
